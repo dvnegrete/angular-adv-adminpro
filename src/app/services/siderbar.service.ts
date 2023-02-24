@@ -12,18 +12,11 @@ export class SiderbarService {
       submenu: [
         { title: 'Main', url:'/' },
         { title: 'ProgressBar', url:'progress' },
-        { title: 'Graficas', url:'grafica1' }
+        { title: 'Graficas', url:'grafica1' },
+        { title: 'Promesas', url:'promesas' },
+        { title: 'RxJS', url:'rxjs' }
       ]
-    },
-    {
-      title: 'Dashboard 2',
-      icon: 'mdi mdi-gauge',
-      submenu: [
-        { title: 'Main', url:'/' },
-        { title: 'ProgressBar', url:'progress' },
-        { title: 'Graficas', url:'grafica1' }
-      ]
-    }
+    }    
   ]
 
   constructor() { }
