@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { resolve } from 'chart.js/dist/helpers/helpers.options';
 
 @Component({
   selector: 'app-promises',

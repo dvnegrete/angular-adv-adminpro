@@ -3,3 +3,8 @@
 #themecolors .selector {
     cursor: pointer;
 }
+
+.imgPrevious {
+    height: 160px;
+    border-radius: 6em;
+}
