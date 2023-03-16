@@ -7,7 +7,7 @@ export class SiderbarService {
 
   menu: any[] = [
     {
-      title: 'Dashboard!!!',
+      title: 'Dashboard',
       icon: 'mdi mdi-gauge',
       submenu: [
         { title: 'Main', url:'/' },
@@ -16,7 +16,16 @@ export class SiderbarService {
         { title: 'Promesas', url:'promesas' },
         { title: 'RxJS', url:'rxjs' }
       ]
-    }    
+    },
+    {
+      title: 'Mantenimiento',
+      icon: 'mdi mdi-folder-lock-open',
+      submenu: [
+        { title: 'Usuarios', url:'usuarios' },
+        { title: 'Hospitales', url:'hospitales' },
+        { title: 'Meédicos', url:'medicos' }        
+      ]
+    }
   ]
 
   constructor() { }

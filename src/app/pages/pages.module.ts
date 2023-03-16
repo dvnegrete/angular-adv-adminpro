@@ -15,6 +15,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsersComponent } from './mantenimientos/users/users.component';
 
 
 
@@ -27,7 +28,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
-    PerfilComponent
+    PerfilComponent,
+    UsersComponent
   ],
   imports: [
     FormsModule,

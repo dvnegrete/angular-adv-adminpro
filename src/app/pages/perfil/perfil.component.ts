@@ -72,7 +72,7 @@ export class PerfilComponent implements OnInit{
   }
 
   updateImage(){
-    console.log(this.uploadImage)
+    
     this.fileUploadService.updatePhoto(this.uploadImage, 'usuarios', (this.user.uid || ''))
       .then( img => {
         this.user.img = img

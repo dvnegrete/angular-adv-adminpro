@@ -14,8 +14,7 @@ public titleComponent!: string;
 public titleSubs$: Subscription;
   
   constructor(private router: Router) {
-    this.titleSubs$ = this.getDataRoute().subscribe( ({ title }) => {
-      console.log( title)
+    this.titleSubs$ = this.getDataRoute().subscribe( ({ title }) => {      
       this.titleComponent = title;
       document.title = `AdminPro - ${ title }`
     })

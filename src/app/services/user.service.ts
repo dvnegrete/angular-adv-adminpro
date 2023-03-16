@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators'
 
-import { environment } from '../environments/environment';
+import { LoadUsersInterface } from '../interfaces/load-users.interface';
 import { LoginInterface } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
+import { environment } from '../environments/environment';
 import { Usuario } from './../models/usuario.model';
 
 declare const google: any;
@@ -37,6 +38,14 @@ export class UserService {
 
   get uid(): string {
     return this.user.uid || '';
+  }
+
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
   }
 
   validateToken(): Observable<boolean> {    
@@ -79,11 +88,8 @@ export class UserService {
       ...data,
       role: this.user.role
     }
-    return this.http.put(`${baseURL}/user/${ this.uid }`, newData, {
-      headers: {
-        'x-token': this.token
-      }
-    })
+    
+    return this.http.put(`${baseURL}/user/${ this.uid }`, newData, this.headers)
   }
 
   login( formData: LoginInterface) {
@@ -129,5 +135,29 @@ export class UserService {
     //   this.router.navigateByUrl('/login')
     // })
     
+  }
+
+  loadUser(since: number = 0) {
+    const url = `${baseURL}/user?since=${since}`
+    return this.http.get<LoadUsersInterface>(url, this.headers)
+      .pipe(
+        map( res => {
+          const users = res.users.map( user => 
+            new Usuario(user.nombre, user.email, '', user.img, user.role, user.google, user.uid))
+            return { 
+              users: users,
+              count : res.count
+            }
+        })
+      )
+  }
+
+  deleteUser(user: Usuario) {    
+    const url = `${baseURL}/user/${user.uid}`
+    return this.http.delete(url, this.headers);    
+  }
+
+  saveProfile( user: Usuario){    
+    return this.http.put(`${baseURL}/user/${ user.uid }`, user, this.headers)
   }
 }
