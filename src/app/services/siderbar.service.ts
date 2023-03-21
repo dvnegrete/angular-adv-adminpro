@@ -23,7 +23,7 @@ export class SiderbarService {
       submenu: [
         { title: 'Usuarios', url:'usuarios' },
         { title: 'Hospitales', url:'hospitales' },
-        { title: 'Meédicos', url:'medicos' }        
+        { title: 'Médicos', url:'medicos' }        
       ]
     }
   ]

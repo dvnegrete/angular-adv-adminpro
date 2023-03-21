@@ -62,13 +62,24 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   search(phrase: string){
     if (phrase.length === 0 ) {
-      this.users = this.usersTemp
+      this.users = this.usersTemp;     
+    } else {
+      this.searchesService.search('usuarios', phrase)
+      .subscribe(res => this.users = this.transformSearchUsers(res))
     }
-    this.searchesService.search('usuarios', phrase).subscribe(
-      res => {
-        this.users = res
-      }
-    )
+  }
+
+  private transformSearchUsers (res: any[]): Usuario[] {
+    return res.map(
+      user => new Usuario( 
+        user.nombre, 
+        user.email, 
+        '', 
+        user.img, 
+        user.role, 
+        user.google, 
+        user.uid
+      ))    
   }
 
   deleteUser(user: Usuario) {
