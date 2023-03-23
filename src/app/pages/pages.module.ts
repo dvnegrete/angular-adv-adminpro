@@ -20,6 +20,7 @@ import { UsersComponent } from './mantenimientos/users/users.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { SearchesComponent } from './searches/searches.component';
 
 
 
@@ -36,7 +37,8 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     UsersComponent,
     HospitalesComponent,
     MedicosComponent,
-    MedicoComponent
+    MedicoComponent,
+    SearchesComponent
   ],
   imports: [
     FormsModule,

@@ -8,7 +8,7 @@ export class Medico {
     constructor(
         public _id: string,
         public nombre: string,
-        public img?: string,
+        public img: string,
         public user?: _HospitalAndUser,
         public hospital?: _HospitalAndUser
     ) {}

@@ -37,4 +37,9 @@ export class SearchesService {
       )
   }
   
+  searchGlobal(phrase: string) {
+    const url = `${baseURL}/search/all/${phrase}`
+    return this.http.get(url, this.headers)
+  }
+  
 }

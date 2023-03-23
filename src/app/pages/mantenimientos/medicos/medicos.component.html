@@ -53,7 +53,7 @@
                             <tr *ngFor="let medico of medicos">
                                 <td>
                                     <img class="avatar cursor"  
-                                        [src]=" medico.img"
+                                        [src]="medico.img | imagen:'medicos'"
                                         [alt]="medico.nombre"
                                         (click)="changeImage(medico)">
                                 </td>

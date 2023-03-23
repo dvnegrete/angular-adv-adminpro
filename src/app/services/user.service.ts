@@ -48,6 +48,10 @@ export class UserService {
     }
   }
 
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.user.role || 'USER_ROLE';
+  }
+
   validateToken(): Observable<boolean> {    
     return this.http.get(`${baseURL}/login/renew`, {
       headers: {
@@ -65,7 +69,8 @@ export class UserService {
           google,
           uid, 
         );
-        localStorage.setItem('token', res.token);
+        this.saveLocalStorage(res.token, res.menu);
+
         return true
       }
       ),      
@@ -78,7 +83,7 @@ export class UserService {
      return this.http.post(`${baseURL}/user`, formData)
             .pipe(
               tap( (res: any) => {
-                localStorage.setItem('token', res.token)
+                this.saveLocalStorage(res.token, res.menu);
               })
             )
   }
@@ -96,7 +101,7 @@ export class UserService {
     return this.http.post(`${baseURL}/login`, formData)
           .pipe(
             tap( (res: any) => {
-              localStorage.setItem('token', res.token)
+              this.saveLocalStorage(res.token, res.menu);
             })
           )
   }
@@ -106,7 +111,7 @@ export class UserService {
           .pipe(
             tap( (resp: any )=>{
               console.log(resp)
-                localStorage.setItem('token', resp.token)
+              this.saveLocalStorage(resp.token, resp.menu);
             })
           )
   }
@@ -124,6 +129,9 @@ export class UserService {
   // }
 
   logout() {
+    //Borrar Menu que recibe desde Backend: 
+    localStorage.removeItem('menu');
+
     localStorage.removeItem('token');
     //Para eliminar el inicio de sesión en google
     google.accounts.id.revoke('dvnegrete@gmail.com', ()=>{
@@ -159,5 +167,10 @@ export class UserService {
 
   saveProfile( user: Usuario){    
     return this.http.put(`${baseURL}/user/${ user.uid }`, user, this.headers)
+  }
+
+  saveLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);    
+    localStorage.setItem('menu', JSON.stringify(menu));
   }
 }

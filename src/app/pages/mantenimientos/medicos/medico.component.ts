@@ -20,7 +20,7 @@ export class MedicoComponent implements OnInit {
 
   public medicoForm: FormGroup;
   public hospitales : Hospital[] = [];
-  public selectedMedico: Medico = { _id: "", nombre: "" };
+  public selectedMedico: Medico = { _id: "", nombre: "", img: ""};
   public selectedHospital: Hospital = new Hospital( "", "", "");
   
   constructor(  private fb: FormBuilder,

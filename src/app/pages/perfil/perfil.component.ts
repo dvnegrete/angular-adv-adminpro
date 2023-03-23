@@ -53,7 +53,7 @@ export class PerfilComponent implements OnInit{
           text: err.error.msg,
           confirmButtonText: 'OK'
         })
-        console.log()
+        console.log(err)
       });
   }
 

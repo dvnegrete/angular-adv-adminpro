@@ -14,6 +14,8 @@ import { UsersComponent } from './mantenimientos/users/users.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { SearchesComponent } from './searches/searches.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { 
@@ -24,17 +26,20 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Ajustes de Cuenta' } },
+      { path: 'buscar/:phrase', component: SearchesComponent, data: { title: 'Busquedas' } },
       { path: 'grafica1', component: Grafica1Component, data: { title: 'Gráfica' } },
+      { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de Usuario' } },
       { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
       { path: 'promesas', component: PromisesComponent, data: { title: 'Promesas' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
-      { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de Usuario' } },
 
       //Mantenimientos
-      { path: 'usuarios', component: UsersComponent, data: { title: 'Usuarios de Aplicación' } },
       { path: 'hospitales', component: HospitalesComponent, data: { title: 'Hospitales de Aplicación' } },
       { path: 'medicos', component: MedicosComponent, data: { title: 'Medicos de Aplicación' } },
       { path: 'medico/:id', component: MedicoComponent, data: { title: 'Medicos de Aplicación' } },
+
+      //Rutas para Admin
+      { path: 'usuarios', canActivate: [ AdminGuard ], component: UsersComponent, data: { title: 'Usuarios de Aplicación' } },
     ],    
   },
 ];
